@@ -1,7 +1,9 @@
 package com.rms.moviecatalog.controller;
 
-import com.rms.moviecatalog.dao.UserDao;
+import com.rms.moviecatalog.repository.UserRepository;
 import com.rms.moviecatalog.entity.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,23 +11,23 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-
-
-    private UserDao userDao = new UserDao();
+    private UserRepository userRepository = new UserRepository();
 
     @GetMapping("/list")
     public String list() {
-        List<User> users = userDao.getUsers();
+        List<User> users = userRepository.getUsers();
         return users.toString();
     }
 
     @GetMapping("/get/{id}")
-    public String get(@PathVariable String id) {
+    public ResponseEntity<User> get(@PathVariable String id) {
         try {
-            return userDao.getUser(Long.parseLong(id)).toString();
+            User user = userRepository.getUser(Long.parseLong(id));
+
+            return ResponseEntity.ok(user);
         }
         catch (Exception e) {
-            return "User not found";
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -33,7 +35,7 @@ public class UsersController {
     public String create(@RequestParam(name = "email") String email) {
         User user = new User();
         user.setEmail(email);
-        userDao.saveUser(user);
+        userRepository.saveUser(user);
 
         return "User created!";
     }

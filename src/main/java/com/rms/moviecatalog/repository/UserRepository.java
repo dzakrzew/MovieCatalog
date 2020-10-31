@@ -1,4 +1,4 @@
-package com.rms.moviecatalog.dao;
+package com.rms.moviecatalog.repository;
 
 import com.rms.moviecatalog.HibernateUtil;
 import com.rms.moviecatalog.entity.User;
@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class UserDao {
+public class UserRepository {
 
     public void saveUser(User user) {
         Transaction transaction = null;
