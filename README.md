@@ -1,4 +1,4 @@
-#Movie Catalog
+# Movie Catalog
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet viverra sodales. Quisque efficitur lectus condimentum tortor ultricies rutrum. Quisque aliquet felis lectus, non sagittis risus ultrices vitae.
 
 ## API endpoints
