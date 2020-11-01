@@ -14,9 +14,9 @@ public class UsersController {
     private UserRepository userRepository = new UserRepository();
 
     @GetMapping("/list")
-    public String list() {
+    public ResponseEntity<List<User>> list() {
         List<User> users = userRepository.getUsers();
-        return users.toString();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/get/{id}")

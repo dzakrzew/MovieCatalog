@@ -12,7 +12,9 @@
             com.mysql.cj.jdbc.Driver
         </property>
 
-        <!-- Assume test is the database name -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+    <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
             jdbc:mysql://localhost:3306/hibernate
@@ -27,6 +29,7 @@
         </property>
 
         <mapping class="com.rms.moviecatalog.entity.User"/>
+        <mapping class="com.rms.moviecatalog.entity.Movie"/>
 
     </session-factory>
 </hibernate-configuration>
