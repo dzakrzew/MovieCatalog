@@ -1,4 +1,4 @@
-package com.rms.moviecatalog.controller;
+package com.rms.moviecatalog.restcontroller;
 
 import com.rms.moviecatalog.repository.UserRepository;
 import com.rms.moviecatalog.entity.User;
