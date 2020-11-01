@@ -1,5 +1,6 @@
 package com.rms.moviecatalog;
 
+import com.rms.moviecatalog.controller.HomeController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
