@@ -1,19 +1,23 @@
-package com.rms.moviecatalog.restcontroller;
+package com.rms.moviecatalog.apicontroller;
 
-import com.rms.moviecatalog.entity.Movie;
+import com.rms.moviecatalog.dto.MovieDto;
+import com.rms.moviecatalog.model.Movie;
+import com.rms.moviecatalog.model.MovieRate;
 import com.rms.moviecatalog.repository.MovieRepository;
-import com.rms.moviecatalog.repository.MovieRepository;
-import com.rms.moviecatalog.entity.Movie;
-import org.springframework.http.HttpStatus;
+import com.rms.moviecatalog.requestobject.RateMovieRequestObject;
+import com.rms.moviecatalog.service.MoviesService;
+import com.rms.moviecatalog.util.ApiResponse;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/movies")
+@RequestMapping(value = "/api/movies", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MoviesController {
     private MovieRepository movieRepository = new MovieRepository();
+    private MoviesService moviesService = new MoviesService();
 
     @GetMapping("/list")
     public ResponseEntity<List<Movie>> list() {
@@ -23,32 +27,50 @@ public class MoviesController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Movie> get(@PathVariable String id) {
+    public ResponseEntity<MovieDto> get(@PathVariable Long id) {
         try {
-            Movie movie = movieRepository.getMovie(Long.parseLong(id));
+            MovieDto movieDto = moviesService.getMovieWithRating(id);
 
-            return ResponseEntity.ok(movie);
+            return ResponseEntity.ok(movieDto);
         }
         catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.notFound().build();
         }
     }
 
     @RequestMapping(value = "/create", method = { RequestMethod.GET, RequestMethod.POST })
-    public String create(@RequestParam(name = "title") String title,
-                         @RequestParam(name = "description") String description,
-                         @RequestParam(name = "imageUrl") String imageUrl) {
+    public ResponseEntity<ApiResponse> create(@RequestParam(name = "title") String title,
+                         @RequestParam(name = "plot") String plot,
+                         @RequestParam(name = "posterImageUrl") String posterImageUrl,
+                         @RequestParam(name = "imdbId") String imdbId) {
         Movie movie = new Movie();
         movie.setTitle(title);
-        movie.setDescription(description);
-        movie.setImageUrl(imageUrl);
+        movie.setPlot(plot);
+        movie.setImdbId(imdbId);
+        movie.setPosterImageUrl(posterImageUrl);
 
         try {
             movieRepository.saveMovie(movie);
-            return "Movie created!";
+            return ResponseEntity.ok(new ApiResponse("Movie created successfully"));
         }
         catch (Exception e) {
-            return "Cannot create movie";
+            return ResponseEntity.badRequest().body(new ApiResponse(e.getMessage()));
+        }
+    }
+
+    @RequestMapping(value = "/rate", method = { RequestMethod.GET, RequestMethod.POST })
+    public ApiResponse rateMovie(@RequestParam(name = "movieId") Long movieId, @RequestParam(name = "rating") int rating) {
+
+        RateMovieRequestObject requestObject = new RateMovieRequestObject(movieId, rating);
+
+        try {
+            MovieRate movieRate = moviesService.rateMovie(requestObject);
+
+            return new ApiResponse("Movie rated successfully");
+        }
+        catch (Exception e) {
+            return new ApiResponse(e.getMessage());
         }
     }
 }

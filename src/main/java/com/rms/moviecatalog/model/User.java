@@ -1,7 +1,4 @@
-package com.rms.moviecatalog.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.boot.jackson.JsonComponent;
+package com.rms.moviecatalog.model;
 
 import javax.persistence.*;
 

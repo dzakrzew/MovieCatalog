@@ -1,4 +1,4 @@
-package com.rms.moviecatalog.entity;
+package com.rms.moviecatalog.model;
 
 import javax.persistence.*;
 
@@ -15,10 +15,36 @@ public class Movie {
     private String title;
 
     @Column(length = 4096)
-    private String description;
+    private String plot;
 
     @Column(length = 2048)
-    private String imageUrl;
+    private String posterImageUrl;
+
+    @Column
+    private String genre;
+
+    @Column
+    private String runtime;
+
+    @Column
+    private String language;
+
+    @Column
+    private String country;
+
+    @Column(unique = true)
+    private String imdbId;
+
+    @Column
+    private String imdbRating;
+
+    @Column
+    private String year;
+
+    @Override
+    public String toString() {
+        return String.format("Movie {id = %s, title = %s}", id, title);
+    }
 
     public Long getId() {
         return id;
@@ -36,24 +62,75 @@ public class Movie {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPlot() {
+        return plot;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPlot(String plot) {
+        this.plot = plot;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getPosterImageUrl() {
+        return posterImageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setPosterImageUrl(String posterImageUrl) {
+        this.posterImageUrl = posterImageUrl;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Movie {id = %s, title = %s}", id, title);
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
+    public String getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(String imdbRating) {
+        this.imdbRating = imdbRating;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }
