@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("name", "User");
+    @GetMapping("/**")
+    public String index() {
         return "index";
     }
 }

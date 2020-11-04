@@ -7,8 +7,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet viverra soda
 * `/api/movies/get/{id}`
 * `/api/movies/create`
     * `name=`
-    * `description=`
-    * `imageUrl=`
+    * `plot=`
+    * `posterImageUrl=`
+    * `imdbId=`
+* `/api/movies/rate`
+    * `movieId=`
+    * `rating=`
 
 ### Users
 * `/api/users/list`
