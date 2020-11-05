@@ -1,6 +1,5 @@
 package com.rms.moviecatalog.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rms.moviecatalog.model.Movie;
 
 public class MovieDto {

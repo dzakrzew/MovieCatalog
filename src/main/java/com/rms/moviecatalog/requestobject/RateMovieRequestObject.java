@@ -1,6 +1,5 @@
 package com.rms.moviecatalog.requestobject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class RateMovieRequestObject implements RequestObjectInterface {
         this.movieId = movieId;
         this.rating = rating;
 
-        errors = new ArrayList<String>();
+        errors = new ArrayList<>();
     }
 
     public boolean isValid() {

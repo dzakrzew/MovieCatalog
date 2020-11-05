@@ -1,9 +1,9 @@
 package com.rms.moviecatalog.model;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "movies")
 public class Movie {
 
     @Id
