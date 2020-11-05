@@ -8,7 +8,9 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory() {
         if (factory == null) {
-            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            Configuration cfg = new Configuration();
+            cfg = cfg.configure("hibernate.cfg.xml");
+            factory = cfg.buildSessionFactory();
         }
 
         return factory;

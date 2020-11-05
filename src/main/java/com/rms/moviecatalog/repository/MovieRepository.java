@@ -33,7 +33,7 @@ public class MovieRepository {
 
     public Movie getMovie(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return (Movie)session.get(Movie.class, id);
+            return session.get(Movie.class, id);
         }
     }
 }

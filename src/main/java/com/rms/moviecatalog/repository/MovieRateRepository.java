@@ -5,7 +5,6 @@ import com.rms.moviecatalog.model.Movie;
 import com.rms.moviecatalog.model.MovieRate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class MovieRateRepository {
     public MovieRate saveMovieRate(MovieRate movieRate) {
