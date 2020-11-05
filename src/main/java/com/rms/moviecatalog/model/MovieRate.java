@@ -3,7 +3,6 @@ package com.rms.moviecatalog.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "movie_rates")
 public class MovieRate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +14,7 @@ public class MovieRate {
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column

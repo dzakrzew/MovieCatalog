@@ -19,6 +19,8 @@ services:
     container_name: db
     image: mariadb
     restart: always
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: iuGIuy65dai7a6dagfd
 
