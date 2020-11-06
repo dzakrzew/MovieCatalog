@@ -14,6 +14,9 @@ export const SideBarWrapper = styled.div`
     @media (max-width: 768px) {
         left: -90%;
         width: 90%;
+        &.shown {
+            left: 0;
+        }
     }
 `;
 

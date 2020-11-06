@@ -7,9 +7,13 @@ export const NavBarWrapper = styled.nav`
     display: grid;
     grid-template-columns: 300px auto;
     @media (max-width: 768px) {
-        grid-template-columns: 50px auto;
+        grid-template-columns: 100px auto;
         img {
             display: none !important;
+        }
+        .logoButtons {
+            display: grid;
+            grid-template-columns: 50px 50px;
         }
     }
 `;
