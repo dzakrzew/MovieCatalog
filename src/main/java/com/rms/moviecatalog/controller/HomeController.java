@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping("/")
+    /*@RequestMapping("/{path:[^\\.]+}/**")
     public String index() {
-        return "index";
-    }
+        return "forward:/";
+    }*/
 }
