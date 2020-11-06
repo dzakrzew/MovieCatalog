@@ -4,6 +4,17 @@ import { darken } from 'polished';
 
 export const SideBarWrapper = styled.div`
     background: ${(props) => darken(0.1, COLORS.background)};
+    width: 300px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 9999;
+    height: 100%;
+    transition: left 0.5s;
+    @media (max-width: 768px) {
+        left: -90%;
+        width: 90%;
+    }
 `;
 
 export const SideBarMenu = styled.ul`
