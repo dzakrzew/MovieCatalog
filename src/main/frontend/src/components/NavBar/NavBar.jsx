@@ -9,19 +9,26 @@ import { LogoWrapper } from './LogoWrapper.style';
 
 import { IoMdSearch } from 'react-icons/all';
 
-import logo from '../../images/logo.png';
-
 export const NavBar = () => {
     return (
         <NavBarWrapper>
             <Link to={routes.Home.path}>
                 <LogoWrapper>
-                    <img src={logo} alt={'Movie Catalog'} />
+                    <div />
                 </LogoWrapper>
             </Link>
             <SearchInput>
                 <IoMdSearch size={20} />
-                <input type={'text'} placeholder={'Search'} />
+                <input
+                    type={'text'}
+                    placeholder={'Search'}
+                    onFocus={(e) => {
+                        e.target.placeholder = '';
+                    }}
+                    onBlur={(e) => {
+                        e.target.placeholder = 'Search';
+                    }}
+                />
             </SearchInput>
         </NavBarWrapper>
     );

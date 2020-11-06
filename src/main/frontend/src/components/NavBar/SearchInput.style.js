@@ -10,6 +10,7 @@ export const SearchInput = styled.div`
         color: white;
     }
     input {
+        word-wrap: nowrap;
         left: 0;
         padding-left: 20px;
         background: transparent;
