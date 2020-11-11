@@ -3,7 +3,12 @@ module.exports = {
         browser: true,
         es6: true,
     },
-    extends: ['react-app', 'plugin:prettier/recommended', 'eslint:recommended'],
+    extends: [
+        'react-app',
+        'plugin:prettier/recommended',
+        'eslint:recommended',
+        'prettier/react',
+    ],
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
@@ -11,7 +16,7 @@ module.exports = {
         ecmaVersion: 2018,
         sourceType: 'module',
     },
-    plugins: ['react'],
+    plugins: ['react', 'prettier'],
     rules: {
         indent: ['error', 4],
         'linebreak-style': ['error', 'unix'],
