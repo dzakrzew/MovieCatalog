@@ -1,58 +1,40 @@
-package com.rms.moviecatalog.model;
+package com.rms.moviecatalog.requestModel;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import java.util.UUID;
+public class MovieCreateRequestModal {
 
-@Entity
-public class Movie {
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(unique = true, nullable = false, updatable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
-
-    @Column(nullable = false)
+    @NotNull(message = "Film musi posiadać tytuł")
+    @Size(max = 255, message = "Tytul filmy nie może zawierać więcej niż 255 znaków")
     private String title;
 
-    @Column(length = 4096)
+    @Size(max = 4096, message = "Opis filmy nie może zawierać więcej niż 4096 znaków")
     private String plot;
 
-    @Column(length = 2048)
+    @URL(regexp = "^(http|https).*")
+    @Size(max = 2048, message = "Pole nie może zawierać więcej niż 2048 znaków")
     private String posterImageUrl;
 
-    @Column
+    @Size(max = 255, message = "Pole nie może zawierać więcej niż 255 znaków")
     private String genre;
 
-    @Column
+    @Size(max = 255, message = "Pole nie może zawierać więcej niż 255 znaków")
     private String runtime;
 
-    @Column
+    @Size(max = 255, message = "Pole nie może zawierać więcej niż 255 znaków")
     private String language;
 
-    @Column
+    @Size(max = 255, message = "Pole nie może zawierać więcej niż 255 znaków")
     private String country;
 
-    @Column(unique = true)
+    @Size(max = 255, message = "Pole nie może zawierać więcej niż 255 znaków")
     private String imdbId;
 
-    @Column
+    @Size(max = 255, message = "Pole nie może zawierać więcej niż 255 znaków")
     private String year;
-
-    @Override
-    public String toString() {
-        return String.format("Movie {id = %s, title = %s}", id, title);
-    }
-
-    public UUID getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;

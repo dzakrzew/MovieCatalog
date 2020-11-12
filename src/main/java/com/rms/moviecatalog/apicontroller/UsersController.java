@@ -2,13 +2,16 @@ package com.rms.moviecatalog.apicontroller;
 
 import com.rms.moviecatalog.repository.UserRepository;
 import com.rms.moviecatalog.model.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,8 +33,8 @@ public class UsersController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<User> get(@PathVariable String id) {
-        Optional<User> user = userRepository.findById(Long.parseLong(id));
+    public ResponseEntity<User> get(@PathVariable UUID id) {
+        Optional<User> user = userRepository.findById(id);
 
         return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }

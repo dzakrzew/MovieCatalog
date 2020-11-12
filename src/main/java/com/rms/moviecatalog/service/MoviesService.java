@@ -1,58 +1,66 @@
 package com.rms.moviecatalog.service;
 
 import com.rms.moviecatalog.dto.MovieDto;
+import com.rms.moviecatalog.dto.MovieRateDto;
 import com.rms.moviecatalog.model.Movie;
-import com.rms.moviecatalog.model.MovieRate;
-import com.rms.moviecatalog.repository.MovieRateRepository;
 import com.rms.moviecatalog.repository.MovieRepository;
-import com.rms.moviecatalog.requestobject.RateMovieRequestObject;
+
+import com.rms.moviecatalog.requestModel.MovieCreateRequestModal;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class MoviesService {
     private final MovieRepository movieRepository;
-    private final MovieRateRepository movieRateRepository;
+    private final MovieRateService movieRateService;
 
     @Autowired
-    public MoviesService(MovieRepository movieRepository, MovieRateRepository movieRateRepository) {
+    public MoviesService(MovieRepository movieRepository, MovieRateService movieRateService) {
         this.movieRepository = movieRepository;
-        this.movieRateRepository = movieRateRepository;
+        this.movieRateService = movieRateService;
     }
 
-    public MovieRate rateMovie(RateMovieRequestObject requestObject) throws Exception {
-        if (!requestObject.isValid()) {
-            throw new Exception(String.join(", ", requestObject.getErrors()));
-        }
+    public List<Movie> getMoviesByPage(int page, int itemsOnPage) {
+        Pageable pageToFind = PageRequest.of(page, itemsOnPage);
+        Page<Movie> movies = movieRepository.findAll(pageToFind);
+        List<Movie> moviesList = new ArrayList<>();
+        movies.forEach(moviesList::add);
 
-        Optional<Movie> movie = movieRepository.findById(requestObject.getMovieId());
-
-        if (!movie.isPresent()) {
-            throw new Exception("Movie not found");
-        }
-
-        MovieRate movieRate = new MovieRate();
-        movieRate.setMovie(movie.get());
-        movieRate.setRating(requestObject.getRating());
-
-        return movieRateRepository.save(movieRate);
+        return moviesList;
     }
 
-    public MovieDto getMovieWithRating(Long movieId) throws Exception {
+    public Optional<Movie> getMovieById(UUID id) {
+        return this.movieRepository.findById(id);
+    }
 
-        Optional<Movie> movie = movieRepository.findById(movieId);
+    public Optional<MovieDto> getMovieWithRatingById(UUID id) {
+        Optional<Movie> movie = this.movieRepository.findById(id);
 
-        if (!movie.isPresent()) {
-            throw new Exception("Movie not found");
+        if(!movie.isPresent()) {
+            return Optional.empty();
         }
 
-        MovieDto movieDto = new MovieDto(movie.get());
+        Movie foundedMovie = movie.get();
+        List<MovieRateDto> movieComments = this.movieRateService.getMovieComments(foundedMovie);
+        double movieRate = this.movieRateService.getMovieRate(foundedMovie);
 
-        // TODO: naprawic
-        // movieDto.setRating(movieRateRepository.getMovieRating(movie.get()));
+        return Optional.of(new MovieDto(foundedMovie, movieComments, movieRate));
+    }
 
-        return movieDto;
+    public boolean create(MovieCreateRequestModal movieCreateRequestModal) {
+        Movie movie = new Movie();
+        BeanUtils.copyProperties(movieCreateRequestModal, movie);
+
+        this.movieRepository.save(movie);
+        return true;
     }
 }

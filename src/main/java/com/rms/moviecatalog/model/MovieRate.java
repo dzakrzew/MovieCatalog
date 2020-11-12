@@ -10,15 +10,18 @@ public class MovieRate {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false)
+    @JoinColumn(nullable = false, columnDefinition = "BINARY(16)")
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(columnDefinition = "BINARY(16)")
     private User user;
 
     @Column
     private int rating;
+
+    @Column(columnDefinition = "varchar(300)", length = 300)
+    private String comment;
 
     public Long getId() {
         return id;
@@ -50,5 +53,13 @@ public class MovieRate {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
