@@ -1,21 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { MovieList } from '../components/MovieList';
+import { API_ENDPOINTS, APIGet } from '../helpers/API';
 
 export const MoviesPage = () => {
-    const movies = [
-        {
-            id: 1,
-            title: 'Film',
-            rating: 5.5,
-            posterImageUrl: 'http://picsum.photos/200/300?i=1',
-        },
-        {
-            id: 2,
-            title: 'Film 2',
-            rating: 7.8,
-            posterImageUrl: 'http://picsum.photos/200/300?i=2',
-        },
-    ];
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        APIGet(API_ENDPOINTS.movieList + '?details=true').then(setMovies);
+    }, []);
 
     return (
         <div>

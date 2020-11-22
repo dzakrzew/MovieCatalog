@@ -12,14 +12,14 @@ export const MovieList = (props) => {
 
     return (
         <div>
-            {props.movies.map((movie) => {
+            {props.movies.map(({ movie, rating }) => {
                 return (
                     <MovieListItem key={movie.id}>
-                        <div className={'rating'}>{movie.rating}</div>
+                        <div className={'rating'}>{rating}</div>
                         <div className={'poster'}>
-                            <img src={movie.posterImageUrl} alt={'dupa'} />
+                            <img src={movie.posterImageUrl} alt={movie.title} />
                             <div className={'plot-wrapper'}>
-                                <span className={'plot'}>Plot plot plot</span>
+                                <span className={'plot'}>{movie.plot}</span>
                             </div>
                         </div>
                         <span className={'title'}>{movie.title}</span>

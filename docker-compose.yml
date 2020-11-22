@@ -18,7 +18,7 @@ services:
     container_name: db
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: "iuGIuy65dai7a6dagfd"
+      MYSQL_ROOT_PASSWORD: iuGIuy65dai7a6dagfd
 
   adminer:
     container_name: adminer
