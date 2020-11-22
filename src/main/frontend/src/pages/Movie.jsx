@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { API_ENDPOINTS, APIGet } from '../helpers/API';
 import { PageWrapper } from '../components/PageWrapper';
+import { MovieDetails } from '../components/MovieDetails';
 
 export const MoviePage = () => {
     const { id } = useParams();
@@ -14,6 +15,8 @@ export const MoviePage = () => {
 
     if (!movie) return null;
     return (
-        <PageWrapper pageTitle={movie.movie.title}>{movie.movie.title}</PageWrapper>
+        <PageWrapper pageTitle={movie.movie.title}>
+            <MovieDetails {...movie} />
+        </PageWrapper>
     );
 };
