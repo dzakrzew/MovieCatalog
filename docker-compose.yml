@@ -17,14 +17,12 @@ services:
   db:
     container_name: db
     image: mariadb
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "iuGIuy65dai7a6dagfd"
 
   adminer:
     container_name: adminer
     image: adminer
-    restart: always
     ports:
       - 8081:8080
     depends_on:

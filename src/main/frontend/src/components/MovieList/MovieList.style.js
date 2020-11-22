@@ -35,7 +35,7 @@ export const MovieListItem = styled.div`
         }
         &:hover {
             .plot-wrapper {
-                top: 0%;
+                top: 0;
             }
         }
     }

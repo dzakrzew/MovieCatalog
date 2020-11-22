@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { NavBarWrapper } from './NavBar.style';
 import { routes } from '../../routes';
 import { SearchInput } from './SearchInput.style';

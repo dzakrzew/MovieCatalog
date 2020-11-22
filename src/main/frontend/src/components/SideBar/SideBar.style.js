@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { COLORS } from '../../helpers/constants';
 import { darken } from 'polished';
 
+import { COLORS } from '../../helpers/constants';
+
 export const SideBarWrapper = styled.div`
-    background: ${(props) => darken(0.1, COLORS.background)};
+    background: ${darken(0.1, COLORS.background)};
     width: 300px;
     position: absolute;
     top: 60px;
@@ -21,9 +22,8 @@ export const SideBarWrapper = styled.div`
 `;
 
 export const SideBarMenu = styled.ul`
-    margin: 0;
     padding: 0;
-    margin-top: 30px;
+    margin: 30px 0 0;
 `;
 
 export const SideBarMenuItem = styled.li`

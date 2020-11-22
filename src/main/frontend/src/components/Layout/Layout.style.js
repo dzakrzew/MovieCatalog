@@ -8,17 +8,18 @@ export const PageWrapper = styled.div`
 export const Main = styled.main`
     background-color: ${COLORS.background};
     min-height: 80vh;
-    padding: 30px;
     display: inline-block;
     position: relative;
     width: 100%;
     box-sizing: border-box;
     vertical-align: top;
     font-family: 'Poppins', sans-serif;
-    padding-left: 330px;
+    padding: 30px 30px 30px 330px;
+
     @media (max-width: 768px) {
         padding-left: 30px;
     }
+
     h1 {
         margin-top: 0;
     }

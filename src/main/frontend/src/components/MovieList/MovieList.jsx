@@ -17,7 +17,7 @@ export const MovieList = (props) => {
                     <MovieListItem key={movie.id}>
                         <div className={'rating'}>{movie.rating}</div>
                         <div className={'poster'}>
-                            <img src={movie.posterImageUrl} />
+                            <img src={movie.posterImageUrl} alt={'dupa'} />
                             <div className={'plot-wrapper'}>
                                 <span className={'plot'}>Plot plot plot</span>
                             </div>
