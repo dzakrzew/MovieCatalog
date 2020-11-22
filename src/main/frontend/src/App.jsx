@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 import { AppRouter } from './routes';
 import { Layout } from './components/Layout';
 import { ResponsiveContext } from './contexts/ResponsiveContext';
+import history from './routes/history';
 
 export const App = () => {
     const [responsiveContextState, setResponsiveContextState] = useState({
@@ -18,7 +19,7 @@ export const App = () => {
     };
 
     return (
-        <BrowserRouter>
+        <Router history={history}>
             <ResponsiveContext.Provider
                 value={{ ...responsiveContextState, toggleSidebar }}
             >
@@ -26,6 +27,6 @@ export const App = () => {
                     <AppRouter />
                 </Layout>
             </ResponsiveContext.Provider>
-        </BrowserRouter>
+        </Router>
     );
 };

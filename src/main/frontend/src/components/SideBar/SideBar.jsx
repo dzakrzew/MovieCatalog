@@ -11,17 +11,21 @@ export const SideBar = () => {
     return (
         <SideBarWrapper className={isSidebarShown ? 'shown' : ''}>
             <SideBarMenu>
-                {Object.keys(routes).map((routeName) => (
-                    <SideBarMenuItem key={routeName} onClick={toggleSidebar}>
-                        <NavLink
-                            to={routes[routeName].path}
-                            exact={routes[routeName].exact}
-                            activeClassName={'active'}
-                        >
-                            {routeName}
-                        </NavLink>
-                    </SideBarMenuItem>
-                ))}
+                {Object.keys(routes).map(
+                    (routeName) =>
+                        !routes[routeName].excludeNavBar && (
+                            <SideBarMenuItem key={routeName} onClick={toggleSidebar}>
+                                <NavLink
+                                    to={routes[routeName].path}
+                                    exact={routes[routeName].exact}
+                                    activeClassName={'active'}
+                                >
+                                    {routes[routeName].icon}
+                                    {routeName}
+                                </NavLink>
+                            </SideBarMenuItem>
+                        )
+                )}
             </SideBarMenu>
         </SideBarWrapper>
     );

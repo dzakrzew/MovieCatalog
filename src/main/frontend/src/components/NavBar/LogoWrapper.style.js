@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 import { COLORS } from '../../helpers/constants';
 import logo from '../../images/logo.png';
@@ -7,7 +6,7 @@ import logoSquare from '../../images/logo-square.png';
 
 export const LogoWrapper = styled.div`
     text-align: center;
-    background: ${darken(0.1, COLORS.primary)};
+    background: ${COLORS.primary};
     & > div {
         height: 30px;
         width: 150px;
