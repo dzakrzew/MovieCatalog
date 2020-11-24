@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import { NavBarWrapper } from './NavBar.style';
 import { routes } from '../../routes';
 import { SearchInput } from './SearchInput.style';
@@ -9,28 +10,23 @@ import { IoMdSearch } from 'react-icons/all';
 import { ResponsiveContext } from '../../contexts/ResponsiveContext';
 
 export const NavBar = () => {
+    const { isSidebarShown, toggleSidebar } = useContext(ResponsiveContext);
     return (
         <NavBarWrapper>
             <div className={'logoButtons'}>
-                <Link to={routes.Home.path}>
+                <Link to={routes.Browse.path}>
                     <LogoWrapper>
                         <div />
                     </LogoWrapper>
                 </Link>
-                <ResponsiveContext.Consumer>
-                    {({ isSidebarShown, toggleSidebar }) => (
-                        <ToggleSidebarButton
-                            onClick={toggleSidebar}
-                            className={`toggleButton ${
-                                isSidebarShown ? 'toggled' : ''
-                            }`}
-                        >
-                            <span />
-                            <span />
-                            <span />
-                        </ToggleSidebarButton>
-                    )}
-                </ResponsiveContext.Consumer>
+                <ToggleSidebarButton
+                    onClick={toggleSidebar}
+                    className={`toggleButton ${isSidebarShown ? 'toggled' : ''}`}
+                >
+                    <span />
+                    <span />
+                    <span />
+                </ToggleSidebarButton>
             </div>
             <SearchInput>
                 <IoMdSearch size={20} />

@@ -1,29 +1,16 @@
 import styled from 'styled-components';
+import { darken, opacify } from 'polished';
+
 import { COLORS } from '../../helpers/constants';
-import { darken } from 'polished';
 
 export const SideBarWrapper = styled.div`
-    background: ${(props) => darken(0.1, COLORS.background)};
+    background: ${darken(0.1, COLORS.background)};
     width: 300px;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    z-index: 9999;
-    height: 100%;
-    transition: left 0.5s;
-    @media (max-width: 768px) {
-        left: -90%;
-        width: 90%;
-        &.shown {
-            left: 0;
-        }
-    }
 `;
 
 export const SideBarMenu = styled.ul`
-    margin: 0;
     padding: 0;
-    margin-top: 30px;
+    margin: 30px 0 0;
 `;
 
 export const SideBarMenuItem = styled.li`
@@ -33,17 +20,34 @@ export const SideBarMenuItem = styled.li`
         box-sizing: border-box;
         width: 100%;
         text-decoration: none;
-        padding: 15px;
-        display: inline-block;
+        padding: 16px 32px;
+        display: block;
         letter-spacing: 1px;
-        color: white;
+        color: ${darken(0.1, '#ffffff')};
         font-family: 'Poppins', sans-serif;
-        &.active {
+        border-left: 3px solid transparent;
+        &.active,
+        &.active:hover {
             background: ${COLORS.background};
             color: ${COLORS.primary};
+            border-color: ${COLORS.primary};
+            box-shadow: inset 16px 0 24px -24px ${opacify(1, COLORS.primary)};
         }
+
         &:hover {
-            background: ${COLORS.background};
+            color: white;
+            background: ${darken(0.5, COLORS.background)};
+        }
+    }
+    svg {
+        margin-right: 16px;
+        transform: translateX(0);
+        transition: all 0.2s linear;
+        will-change: transform;
+    }
+    :hover {
+        svg {
+            transform: translateX(-10px);
         }
     }
 `;

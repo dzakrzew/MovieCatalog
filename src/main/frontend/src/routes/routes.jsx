@@ -1,14 +1,50 @@
-import * as Pages from '../pages';
+import React from 'react';
+import {
+    FaHome,
+    FaFireAlt,
+    FaHeart,
+    FaLayerGroup,
+    FaBookmark,
+} from 'react-icons/fa';
+
+import { MoviePage, MoviesPage, MoviesCategoryPage } from '../pages';
 
 export const routes = {
-    Home: {
+    Browse: {
         path: '/',
         exact: true,
-        component: Pages.HomePage,
+        children: <MoviesPage />,
+        icon: <FaHome />,
     },
-    Movies: {
-        path: '/movies',
+    Movie: {
+        path: '/movies/:id',
         exact: true,
-        component: Pages.MoviesPage,
+        children: <MoviePage />,
+        excludeNavBar: true,
+    },
+    'Top picks': {
+        path: '/top-picks',
+        exact: true,
+        children: <MoviesCategoryPage />,
+        icon: <FaFireAlt />,
+    },
+    'Fan favorites': {
+        path: '/fan-favorites',
+        exact: true,
+        children: <MoviesCategoryPage />,
+        icon: <FaHeart />,
+    },
+    // eslint-disable-next-line
+    'Editor\'s picks': {
+        path: '/editors-picks',
+        exact: true,
+        children: <MoviesCategoryPage />,
+        icon: <FaLayerGroup />,
+    },
+    'Recently viewed': {
+        path: '/recently-viewed',
+        exact: true,
+        children: <MoviesCategoryPage />,
+        icon: <FaBookmark />,
     },
 };

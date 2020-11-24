@@ -3,7 +3,7 @@ import React from 'react';
 import { PageWrapper, Main, MainWrapper } from './Layout.style';
 import { Footer } from '../Footer';
 import { NavBar } from '../NavBar';
-import { SideBar } from '../SideBar/SideBar';
+import { SideBar } from '../SideBar';
 
 export const Layout = ({ children }) => {
     return (

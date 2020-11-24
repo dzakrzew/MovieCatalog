@@ -1,9 +1,12 @@
+import history from '../routes/history';
+
 export const API_LINK = 'http://localhost:8080/api';
 
 export const DEFAULT_HEADERS = {};
 
 export const API_ENDPOINTS = {
     movieList: '/movies/list',
+    movieById: (id) => `/movies/${id}`,
 };
 
 export const APIGet = async (endpoint, headers = {}) => {
@@ -12,7 +15,10 @@ export const APIGet = async (endpoint, headers = {}) => {
         cache: 'default',
         headers: { ...DEFAULT_HEADERS, ...headers },
     });
-    return response.json();
+
+    if (response.ok) return response.json();
+    if (response.status === 404) history.push('/4xx');
+    else history.push('/5xx');
 };
 
 export const APIPost = (endpoint, data = {}, headers = {}) =>

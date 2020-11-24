@@ -1,38 +1,32 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Router } from 'react-router-dom';
 
 import { AppRouter } from './routes';
-import { Layout } from './components/Layout/Layout';
+import { Layout } from './components/Layout';
 import { ResponsiveContext } from './contexts/ResponsiveContext';
+import history from './routes/history';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
+export const App = () => {
+    const [responsiveContextState, setResponsiveContextState] = useState({
+        isSidebarShown: false,
+        isMobile: false,
+    });
 
-        this.toggleSidebar = () => {
-            this.setState((state) => ({
-                isSidebarShown: !state.isSidebarShown,
-            }));
-        };
+    const toggleSidebar = () => {
+        setResponsiveContextState((prevState) => ({
+            isSidebarShown: !prevState.isSidebarShown,
+        }));
+    };
 
-        this.state = {
-            isSidebarShown: false,
-            toggleSidebar: this.toggleSidebar,
-            isMobile: false,
-        };
-    }
-
-    render() {
-        return (
-            <BrowserRouter>
-                <ResponsiveContext.Provider value={this.state}>
-                    <Layout>
-                        <AppRouter />
-                    </Layout>
-                </ResponsiveContext.Provider>
-            </BrowserRouter>
-        );
-    }
-}
-
-export default App;
+    return (
+        <Router history={history}>
+            <ResponsiveContext.Provider
+                value={{ ...responsiveContextState, toggleSidebar }}
+            >
+                <Layout>
+                    <AppRouter />
+                </Layout>
+            </ResponsiveContext.Provider>
+        </Router>
+    );
+};

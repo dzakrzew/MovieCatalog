@@ -11,6 +11,7 @@ export const ToggleSidebarButton = styled.button`
     margin: 0;
     box-sizing: border-box;
     height: 60px;
+
     span {
         width: 30px;
         height: 2px;
@@ -20,6 +21,7 @@ export const ToggleSidebarButton = styled.button`
             margin-top: 7px;
         }
     }
+
     @media (min-width: 769px) {
         display: none;
     }
