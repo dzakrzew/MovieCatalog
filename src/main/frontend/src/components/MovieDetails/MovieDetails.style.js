@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export const MovieDetailsWrapper = styled.section`
-    max-width: 1200px;
+export const MovieDetailsPageWrapper = styled.section`
+    display: flex;
+`;
+
+export const MovieDetailsWrapper = styled.div`
+    display: inline-block;
     margin: 0 auto;
 
     & > * {
@@ -11,6 +15,14 @@ export const MovieDetailsWrapper = styled.section`
 
 export const MovieDetailsHeader = styled.div`
     display: flex;
+
+    span {
+        margin-top: auto;
+        margin-left: auto;
+        padding-bottom: 6px;
+        font-size: 1.5em;
+        color: white;
+    }
 `;
 
 export const MovieDetailsTitle = styled.h1`
@@ -29,16 +41,26 @@ export const MovieDetailsPlot = styled.div`
         height: auto;
     }
 
-    p {
+    > div {
+        display: flex;
+        flex-direction: column;
         padding-left: 16px;
-        color: white;
-        max-width: 600px;
-        margin: 0;
+        p {
+            color: white;
+            max-width: 600px;
+            margin: 0;
+        }
+
+        > div {
+            margin-top: auto;
+            p {
+                margin-bottom: 8px;
+            }
+        }
     }
 `;
 
-export const MovieDetailsRates = styled.div`
-    margin: 0;
-    font-size: 2em;
-    color: white;
+export const MovieDetailsSvgLink = styled.a`
+    display: block;
+    margin-top: 8px;
 `;

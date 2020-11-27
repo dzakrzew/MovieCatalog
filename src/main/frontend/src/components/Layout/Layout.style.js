@@ -9,7 +9,6 @@ export const PageWrapper = styled.div`
 export const Main = styled.main`
     background-color: ${COLORS.background};
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
     padding: 32px 48px;
     flex: 1;
     overflow-y: auto;
