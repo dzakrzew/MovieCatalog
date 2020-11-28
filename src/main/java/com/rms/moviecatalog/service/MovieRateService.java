@@ -47,7 +47,7 @@ public class MovieRateService {
         Iterable<MovieRate> movieRates = this.movieRateRepository.findAllByMovieIs(movie);
         List<MovieRateDto> movieRateList = new ArrayList<>();
         movieRates.forEach(movieRate -> {
-            MovieRateDto movieRateDto = new MovieRateDto(movieRate.getRating(), movieRate.getComment());
+            MovieRateDto movieRateDto = new MovieRateDto(movieRate.getRating(), movieRate.getComment(), movieRate.getCreatedAt());
             movieRateList.add(movieRateDto);
         });
 

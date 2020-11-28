@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import { AddReviewModal } from './AddReviewModal';
+import { Button } from '../Button';
 
 const MODAL_NODE_ELEMENT = document.getElementById('modals');
 export const AddReview = ({ movieId }) => {
@@ -12,7 +13,9 @@ export const AddReview = ({ movieId }) => {
 
     return (
         <>
-            <button onClick={handleOpenPortal}>Add review</button>
+            <Button onClick={handleOpenPortal} primary>
+                Add review
+            </Button>
             {isOpen &&
                 createPortal(
                     <AddReviewModal movieId={movieId} onClose={handleClosePortal} />,

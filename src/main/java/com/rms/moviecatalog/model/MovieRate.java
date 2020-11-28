@@ -1,6 +1,10 @@
 package com.rms.moviecatalog.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class MovieRate {
@@ -22,6 +26,9 @@ public class MovieRate {
 
     @Column(columnDefinition = "varchar(300)", length = 300)
     private String comment;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     public Long getId() {
         return id;
@@ -61,5 +68,13 @@ public class MovieRate {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

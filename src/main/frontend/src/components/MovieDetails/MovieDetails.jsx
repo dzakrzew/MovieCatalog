@@ -13,7 +13,7 @@ import { ReactComponent as ImdbLogo } from '../../images/imdb_logo.svg';
 import { Comments } from '../Comments';
 import { AddReview } from '../AddReview';
 
-export const MovieDetails = ({ movie }) => {
+export const MovieDetails = ({ movie, rates }) => {
     return (
         <MovieDetailsPageWrapper>
             <MovieDetailsWrapper>
@@ -42,7 +42,7 @@ export const MovieDetails = ({ movie }) => {
                         </div>
                     </div>
                 </MovieDetailsPlot>
-                <Comments data={[]} />
+                <Comments data={rates.filter((rate) => rate.comment)} />
             </MovieDetailsWrapper>
         </MovieDetailsPageWrapper>
     );

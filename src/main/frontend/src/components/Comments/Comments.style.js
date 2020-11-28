@@ -82,7 +82,7 @@ export const CommentsListItem = styled.div`
 export const CommentsListItemContainer = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    width: 600px;
     background-color: #fff;
 
     .react-stars {

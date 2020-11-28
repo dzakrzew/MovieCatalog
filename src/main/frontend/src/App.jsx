@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { AppRouter } from './routes';
 import { Layout } from './components/Layout';
@@ -22,6 +24,7 @@ export const App = () => {
     return (
         <Router history={history}>
             <Fonts />
+            <ToastContainer />
             <ResponsiveContext.Provider
                 value={{ ...responsiveContextState, toggleSidebar }}
             >

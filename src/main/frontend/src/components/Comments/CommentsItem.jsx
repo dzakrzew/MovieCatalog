@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import formatDistance from 'date-fns/formatDistance';
 import ReactStars from 'react-rating-stars-component';
@@ -11,8 +11,17 @@ import {
     CommentsUserAvatar,
 } from './Comments.style';
 import { COLORS } from '../../helpers/constants';
+import { getRandomUsername } from '../../helpers/linksGenerator';
 
 export const CommentItem = ({ username, createdAt, rating, comment }) => {
+    const [tempUsername, setTemp] = useState('joe');
+
+    useEffect(() => {
+        getRandomUsername().then(setTemp);
+    }, []);
+
+    if (comment.length === 0) return null;
+
     return (
         <CommentsListItem>
             <CommentsUserAvatar
@@ -23,10 +32,10 @@ export const CommentItem = ({ username, createdAt, rating, comment }) => {
             />
             <CommentsListItemContainer>
                 <CommentsListItemContainerHeader>
-                    {username}{' '}
+                    {tempUsername}{' '}
                     <span>
                         rated{' '}
-                        {formatDistance(new Date(createdAt), new Date(), {
+                        {formatDistance(new Date(), new Date(), {
                             addSuffix: true,
                         })}
                     </span>
