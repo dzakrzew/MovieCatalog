@@ -1,4 +1,4 @@
-import React, { useEffect, MouseEvent } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FaTimes, FaStar } from 'react-icons/fa';
 import { Formik, Field } from 'formik';
@@ -21,7 +21,7 @@ const INITIAL_VALUES = {
     rating: 0,
 };
 
-export const AddReviewModal = ({ movieId, onClose }) => {
+export const AddReviewModal = ({ movieId, onClose, onNewReview }) => {
     useEffect(() => {
         document.body.style.overflow = 'hidden';
         return () => {
@@ -29,7 +29,7 @@ export const AddReviewModal = ({ movieId, onClose }) => {
         };
     }, []);
 
-    const handleClickWrapper = (e: MouseEvent<HTMLDivElement>) => {
+    const handleClickWrapper = (e) => {
         e.stopPropagation();
         e.preventDefault();
     };
@@ -40,6 +40,7 @@ export const AddReviewModal = ({ movieId, onClose }) => {
             const message = (await response.json()).message;
             toast.success(message);
             onClose();
+            onNewReview();
             return;
         }
         response.text().then((errorMessage) => {
@@ -103,4 +104,5 @@ export const AddReviewModal = ({ movieId, onClose }) => {
 AddReviewModal.propTypes = {
     movieId: PropTypes.string,
     onClose: PropTypes.func,
+    onNewReview: PropTypes.func,
 };

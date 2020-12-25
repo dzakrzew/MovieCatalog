@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { API_ENDPOINTS, APIGet } from '../helpers/API';
@@ -9,14 +9,18 @@ export const MoviePage = () => {
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
 
-    useEffect(() => {
+    const loadData = useCallback(() => {
         APIGet(API_ENDPOINTS.movieById(id)).then(setMovie);
     }, [id]);
+
+    useEffect(() => {
+        loadData();
+    }, [id, loadData]);
 
     if (!movie) return null;
     return (
         <PageWrapper pageTitle={movie.movie.title}>
-            <MovieDetails {...movie} />
+            <MovieDetails {...movie} refetch={loadData} />
         </PageWrapper>
     );
 };

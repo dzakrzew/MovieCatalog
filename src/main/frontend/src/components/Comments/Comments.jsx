@@ -14,7 +14,7 @@ export const Comments = ({ data }) => {
     useEffect(() => {
         setCommentsCropped(data.slice(0, COMMENTS_PER_PAGE));
         // eslint-disable-next-line
-    }, []);
+    }, [data]);
 
     const handlePageChange = (page) => {
         setCommentsCropped(

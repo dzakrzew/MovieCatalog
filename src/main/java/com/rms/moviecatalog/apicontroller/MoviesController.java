@@ -48,8 +48,6 @@ public class MoviesController {
     @GetMapping("/{id}")
     public ResponseEntity<MovieDto> get(@PathVariable UUID id) {
         Optional<MovieDto> movieDto = moviesService.getMovieWithRatingById(id);
-        String s = "asd";
-        System.out.println(s);
 
         return movieDto.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 

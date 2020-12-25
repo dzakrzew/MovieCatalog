@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaStar } from 'react-icons/fa';
+import ReactStars from 'react-rating-stars-component';
 
 import {
     MovieDetailsPageWrapper,
@@ -12,8 +14,9 @@ import {
 import { ReactComponent as ImdbLogo } from '../../images/imdb_logo.svg';
 import { Comments } from '../Comments';
 import { AddReview } from '../AddReview';
+import { COLORS } from '../../helpers/constants';
 
-export const MovieDetails = ({ movie, rates }) => {
+export const MovieDetails = ({ movie, rates, refetch, rating }) => {
     return (
         <MovieDetailsPageWrapper>
             <MovieDetailsWrapper>
@@ -21,6 +24,15 @@ export const MovieDetails = ({ movie, rates }) => {
                     <MovieDetailsTitle>{movie.title}</MovieDetailsTitle>
                     <span>{movie.year}</span>
                 </MovieDetailsHeader>
+                <ReactStars
+                    value={rating}
+                    isHalf={false}
+                    edit={false}
+                    size={32}
+                    activeColor={COLORS.primary}
+                    emptyIcon={<FaStar />}
+                    filledIcon={<FaStar />}
+                />
                 <MovieDetailsPlot>
                     <img src={movie.posterImageUrl} alt={movie.title} />
                     <div>
@@ -31,7 +43,7 @@ export const MovieDetails = ({ movie, rates }) => {
                             <p>
                                 {movie.country}, {movie.language}
                             </p>
-                            <AddReview movieId={movie.id} />
+                            <AddReview movieId={movie.id} onNewReview={refetch} />
                             <MovieDetailsSvgLink
                                 href={`https://www.imdb.com/title/${movie.imdbId}`}
                                 target={'_blank'}
@@ -42,7 +54,7 @@ export const MovieDetails = ({ movie, rates }) => {
                         </div>
                     </div>
                 </MovieDetailsPlot>
-                <Comments data={rates.filter((rate) => rate.comment)} />
+                <Comments data={rates.filter((rate) => rate.comment).reverse()} />
             </MovieDetailsWrapper>
         </MovieDetailsPageWrapper>
     );
@@ -52,4 +64,5 @@ MovieDetails.propTypes = {
     movie: PropTypes.object,
     rating: PropTypes.number,
     rates: PropTypes.arrayOf(PropTypes.object),
+    refetch: PropTypes.func,
 };
