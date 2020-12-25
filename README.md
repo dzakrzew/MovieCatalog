@@ -8,6 +8,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet viverra soda
         * `page = Numer strony (liczone od zera)[default: 0]`
         * `itemsOnPage = ilość elementów na stronie [default: 10] `
         * `details = filmy wraz z ocenami (UWAGA: inny typ) [default: false] `
+        * `order = Typ sortowania`
+            * `fan-favorites`
+            * `editors-picks`
+            * `top-picks`
+            * `recently-viewed`
 * `[GET] /api/movies/{id}`
 * `[POST] /api/movies/create`
     * `body (JSON):`

@@ -38,7 +38,7 @@ export const routes = {
     'Editor\'s picks': {
         path: '/editors-picks',
         exact: true,
-        children: <MoviesCategoryPage order={'editor-picks'} />,
+        children: <MoviesCategoryPage order={'editors-picks'} />,
         icon: <FaLayerGroup />,
     },
     'Recently viewed': {

@@ -31,10 +31,10 @@ public class MoviesService {
     }
 
     public List<Movie> getMoviesByOrderAndPage(String order, int page, int itemsOnPage) {
-        /* order = {'fan-favorites', 'top-picks', 'editor-picks', 'recently-viewed'} */
+        /* order = {'fan-favorites', 'top-picks', 'editors-picks', 'recently-viewed'} */
         Pageable pageToFind;
 
-        if (order.equals("editor-picks")) {
+        if (order.equals("editors-picks")) {
             pageToFind = PageRequest.of(page, itemsOnPage, Sort.by("imdbRating").descending());
         }
         else {
