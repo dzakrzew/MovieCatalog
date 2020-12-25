@@ -7,6 +7,7 @@ export const DEFAULT_HEADERS = {};
 export const API_ENDPOINTS = {
     movieList: '/movies/list',
     movieById: (id) => `/movies/${id}`,
+    rateMovieById: (id) => `/movies/${id}/rate`,
 };
 
 export const APIGet = async (endpoint, headers = {}) => {
@@ -25,6 +26,11 @@ export const APIPost = (endpoint, data = {}, headers = {}) =>
     fetch(`${API_LINK}${endpoint}`, {
         method: 'POST',
         cache: 'default',
-        headers: { ...DEFAULT_HEADERS, ...headers },
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            ...DEFAULT_HEADERS,
+            ...headers,
+        },
         body: JSON.stringify(data),
     });
