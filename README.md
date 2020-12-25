@@ -1,20 +1,28 @@
 # Movie Catalog
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet viverra sodales. Quisque efficitur lectus condimentum tortor ultricies rutrum. Quisque aliquet felis lectus, non sagittis risus ultrices vitae.
+Aplikacja webowa do przeglądania bazy filmów. Funkcjonalności:
+* przeglądanie filmów
+* zakładki sortujące filmy pod względem ocen użytkowników, ocen IMDB, a także ostatnio wyświetlanych,
+* wystawianie recenzji składającej się z oceny (0–10) i komentarza.
 
-## API endpoints
-### Movies
+Aplikacja została w języku Java przy użyciu frameworka Spring po stronie backendu i JavaScript (React) po stronie frontendu. Komunikacja między dwoma warstwami następuje przy użyciu API REST w formacie JSON.
+
+## Dokumentacja API
+### Movies (filmy)
 * `[GET] /api/movies/list`
-    * `params:`
+    * opis: Pobiera listę filmów według zadanych parametrów
+    * parametry:
         * `page = Numer strony (liczone od zera) [default: 0]`
         * `itemsOnPage = ilość elementów na stronie [default: 10] `
         * `details = filmy wraz z ocenami (UWAGA: inny typ) [default: false] `
         * `order = Typ sortowania [default: fan-favorites]`
-            * `fan-favorites`
-            * `editors-picks`
-            * `top-picks`
-            * `recently-viewed`
+            * `fan-favorites` – wg ocen użytkowników (od najwyższych), 
+            * `editors-picks` – wg oceny IMDB (od najwyższych),
+            * `top-picks` – wg uśrednionych wartości ocen użytkowników i IMDB (od najwyższych),
+            * `recently-viewed` – wg daty ostatniego wyświetlenia filmu (od najnowszych)
 * `[GET] /api/movies/{id}`
+    * opis: Pobiera dane filmu o podanym `id`
 * `[POST] /api/movies/create`
+    * opis: Dodaje film do bazy
     * `body (JSON):`
         * `title`
         * `plot`
@@ -26,10 +34,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet viverra soda
         * `imdbId` 
         * `year` 
 * `[POST] /api/movies/{id}/rate`
+    * opis: Dodaje recenzję filmu
     * `body (JSON):`
         * `rating (od 1 do 5)`
         * `comment (max 300)`
-
-### Users
-* `/api/users/list`
-* `/api/users/get/{id}`
