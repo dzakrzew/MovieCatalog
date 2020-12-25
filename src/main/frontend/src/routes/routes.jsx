@@ -25,26 +25,26 @@ export const routes = {
     'Top picks': {
         path: '/top-picks',
         exact: true,
-        children: <MoviesCategoryPage />,
+        children: <MoviesCategoryPage order={'top-picks'} />,
         icon: <FaFireAlt />,
     },
     'Fan favorites': {
         path: '/fan-favorites',
         exact: true,
-        children: <MoviesCategoryPage />,
+        children: <MoviesCategoryPage order={'fan-favorites'} />,
         icon: <FaHeart />,
     },
     // eslint-disable-next-line
     'Editor\'s picks': {
         path: '/editors-picks',
         exact: true,
-        children: <MoviesCategoryPage />,
+        children: <MoviesCategoryPage order={'editor-picks'} />,
         icon: <FaLayerGroup />,
     },
     'Recently viewed': {
         path: '/recently-viewed',
         exact: true,
-        children: <MoviesCategoryPage />,
+        children: <MoviesCategoryPage order={'recently-viewed'} />,
         icon: <FaBookmark />,
     },
 };

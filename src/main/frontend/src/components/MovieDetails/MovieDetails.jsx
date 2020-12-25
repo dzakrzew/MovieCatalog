@@ -33,6 +33,9 @@ export const MovieDetails = ({ movie, rates, refetch, rating }) => {
                     emptyIcon={<FaStar />}
                     filledIcon={<FaStar />}
                 />
+                <p className={'rating-description'}>
+                    {rating}/10 basing on {rates.length} reviews
+                </p>
                 <MovieDetailsPlot>
                     <img src={movie.posterImageUrl} alt={movie.title} />
                     <div>
@@ -43,6 +46,7 @@ export const MovieDetails = ({ movie, rates, refetch, rating }) => {
                             <p>
                                 {movie.country}, {movie.language}
                             </p>
+                            <p>IMDB rating: {movie.imdbRating.toFixed(1)}</p>
                             <AddReview movieId={movie.id} onNewReview={refetch} />
                             <MovieDetailsSvgLink
                                 href={`https://www.imdb.com/title/${movie.imdbId}`}

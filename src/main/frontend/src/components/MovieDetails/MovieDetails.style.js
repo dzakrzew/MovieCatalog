@@ -11,6 +11,9 @@ export const MovieDetailsWrapper = styled.div`
     & > * {
         width: 100%;
     }
+    p.rating-description {
+        color: white;
+    }
 `;
 
 export const MovieDetailsHeader = styled.div`

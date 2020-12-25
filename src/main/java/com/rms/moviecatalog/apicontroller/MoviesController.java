@@ -35,8 +35,8 @@ public class MoviesController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity list(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int itemsOnPage, @RequestParam(defaultValue = "false") boolean details) {
-        List<Movie> moviesList = this.moviesService.getMoviesByPage(page, itemsOnPage);
+    public ResponseEntity list(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int itemsOnPage, @RequestParam(defaultValue = "false") boolean details, @RequestParam(defaultValue = "fan-favorites") String order) {
+        List<Movie> moviesList = this.moviesService.getMoviesByOrderAndPage(order, page, itemsOnPage);
 
         if (details) {
             return ResponseEntity.ok(this.movieRateService.getMovieListWithRating(moviesList));

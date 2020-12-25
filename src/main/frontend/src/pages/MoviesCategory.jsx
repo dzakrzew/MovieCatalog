@@ -6,13 +6,15 @@ import { API_ENDPOINTS, APIGet } from '../helpers/API';
 import { routes } from '../routes';
 import { PageWrapper } from '../components/PageWrapper';
 
-export const MoviesCategoryPage = () => {
+export const MoviesCategoryPage = ({ order }) => {
     const location = useLocation();
     const [title, setTitle] = useState('');
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        APIGet(API_ENDPOINTS.movieList + '?details=true').then(setMovies);
+        APIGet(API_ENDPOINTS.movieList + '?details=true&order=' + order).then(
+            setMovies
+        );
     }, []);
 
     useEffect(() => {

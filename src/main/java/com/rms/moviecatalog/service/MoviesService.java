@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,8 +30,17 @@ public class MoviesService {
         this.movieRateService = movieRateService;
     }
 
-    public List<Movie> getMoviesByPage(int page, int itemsOnPage) {
-        Pageable pageToFind = PageRequest.of(page, itemsOnPage);
+    public List<Movie> getMoviesByOrderAndPage(String order, int page, int itemsOnPage) {
+        /* order = {'fan-favorites', 'top-picks', 'editor-picks', 'recently-viewed'} */
+        Pageable pageToFind;
+
+        if (order.equals("editor-picks")) {
+            pageToFind = PageRequest.of(page, itemsOnPage, Sort.by("imdbRating").descending());
+        }
+        else {
+             pageToFind = PageRequest.of(page, itemsOnPage);
+        }
+
         Page<Movie> movies = movieRepository.findAll(pageToFind);
         List<Movie> moviesList = new ArrayList<>();
         movies.forEach(moviesList::add);
@@ -45,7 +55,7 @@ public class MoviesService {
     public Optional<MovieDto> getMovieWithRatingById(UUID id) {
         Optional<Movie> movie = this.movieRepository.findById(id);
 
-        if(!movie.isPresent()) {
+        if (!movie.isPresent()) {
             return Optional.empty();
         }
 

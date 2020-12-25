@@ -45,6 +45,9 @@ public class Movie {
     @Column
     private String year;
 
+    @Column
+    private Double imdbRating;
+
     @Override
     public String toString() {
         return String.format("Movie {id = %s, title = %s}", id, title);
@@ -124,5 +127,13 @@ public class Movie {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public Double getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(Double imdbRating) {
+        this.imdbRating = imdbRating;
     }
 }
