@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
@@ -47,6 +48,9 @@ public class Movie {
 
     @Column
     private Double imdbRating;
+
+    @Column(nullable = true)
+    private Timestamp lastViewed;
 
     @Override
     public String toString() {
@@ -135,5 +139,13 @@ public class Movie {
 
     public void setImdbRating(Double imdbRating) {
         this.imdbRating = imdbRating;
+    }
+
+    public Timestamp getLastViewed() {
+        return lastViewed;
+    }
+
+    public void setLastViewed(Timestamp lastViewed) {
+        this.lastViewed = lastViewed;
     }
 }

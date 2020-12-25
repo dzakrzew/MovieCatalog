@@ -31,19 +31,37 @@ public class MoviesService {
     }
 
     public List<Movie> getMoviesByOrderAndPage(String order, int page, int itemsOnPage) {
-        /* order = {'fan-favorites', 'top-picks', 'editors-picks', 'recently-viewed'} */
-        Pageable pageToFind;
-
-        if (order.equals("editors-picks")) {
-            pageToFind = PageRequest.of(page, itemsOnPage, Sort.by("imdbRating").descending());
-        }
-        else {
-             pageToFind = PageRequest.of(page, itemsOnPage);
-        }
-
-        Page<Movie> movies = movieRepository.findAll(pageToFind);
         List<Movie> moviesList = new ArrayList<>();
-        movies.forEach(moviesList::add);
+
+        switch (order) {
+            case "editors-picks": {
+                Pageable pageToFind = PageRequest.of(page, itemsOnPage, Sort.by("imdbRating").descending());
+
+                Page<Movie> movies = movieRepository.findAll(pageToFind);
+                movies.forEach(moviesList::add);
+                break;
+            }
+            case "fan-favorites":
+                moviesList.addAll(movieRepository.getFanFavoritesMovies(page, itemsOnPage));
+                break;
+            case "recently-viewed": {
+                Pageable pageToFind = PageRequest.of(page, itemsOnPage, Sort.by("lastViewed").descending());
+
+                Page<Movie> movies = movieRepository.findAll(pageToFind);
+                movies.forEach(moviesList::add);
+                break;
+            }
+            case "top-picks":
+                moviesList.addAll(movieRepository.getTopPicksMovies(page, itemsOnPage));
+                break;
+            default: {
+                Pageable pageToFind = PageRequest.of(page, itemsOnPage);
+
+                Page<Movie> movies = movieRepository.findAll(pageToFind);
+                movies.forEach(moviesList::add);
+                break;
+            }
+        }
 
         return moviesList;
     }
@@ -62,6 +80,8 @@ public class MoviesService {
         Movie foundedMovie = movie.get();
         List<MovieRateDto> movieComments = this.movieRateService.getMovieComments(foundedMovie);
         double movieRate = this.movieRateService.getMovieRate(foundedMovie);
+
+        this.movieRepository.updateLastViewed(id);
 
         return Optional.of(new MovieDto(foundedMovie, movieComments, movieRate));
     }
