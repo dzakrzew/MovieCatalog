@@ -4,7 +4,7 @@ Aplikacja webowa do przeglądania bazy filmów. Funkcjonalności:
 * zakładki sortujące filmy pod względem ocen użytkowników, ocen IMDB, a także ostatnio wyświetlanych,
 * wystawianie recenzji filmu składającej się z oceny (0–10) i komentarza.
 
-Aplikacja została w języku Java przy użyciu frameworka Spring po stronie backendu i JavaScript (React) po stronie frontendu. Komunikacja między dwoma warstwami następuje przy użyciu API REST w formacie JSON.
+Aplikacja została napisana w języku Java przy użyciu frameworka Spring po stronie backendu, a także w języku JavaScript (framework React) po stronie frontendu. Komunikacja między dwoma warstwami następuje przy użyciu API REST w formacie JSON.
 
 ## Dokumentacja API
 ### Movies (filmy)
