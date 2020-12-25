@@ -12,11 +12,13 @@ services:
     environment:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: iuGIuy65dai7a6dagfd
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/moviecatalog?useUnicode=true&characterEncoding=utf8&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/moviecatalog?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
 
   db:
     container_name: db
     image: mariadb
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: iuGIuy65dai7a6dagfd
 

@@ -48,6 +48,7 @@ export const MovieListTitleLink = styled(Link)`
 export const MovieListItemWrapper = styled.div`
     position: relative;
     overflow: hidden;
+    margin-bottom: 16px;
 
     .poster {
         position: relative;
@@ -98,7 +99,7 @@ export const MovieListItemWrapper = styled.div`
         display: block;
         font-size: 1em;
         letter-spacing: 0.03125em;
-        padding: 16px 8px;
+        padding: 16px 12px;
         color: white;
         background-color: ${darken(0.05, COLORS.background)};
         text-overflow: ellipsis;
@@ -119,7 +120,7 @@ export const MovieListItemWrapper = styled.div`
             transform: scale(1.1);
         }
         .rating {
-            transform: translateX(50px);
+            transform: translateX(60px);
         }
     }
 `;
