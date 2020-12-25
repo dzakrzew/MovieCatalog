@@ -5,5 +5,6 @@ module.exports = {
     singleQuote: true,
     printWidth: 85,
     arrowParens: "always",
-    endOfLine: "crlf"
+    endOfLine: "auto",
+    lineBreak: false,
 };
