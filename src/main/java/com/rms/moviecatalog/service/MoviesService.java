@@ -42,7 +42,7 @@ public class MoviesService {
                 break;
             }
             case "fan-favorites":
-                moviesList.addAll(movieRepository.getFanFavoritesMovies(page, itemsOnPage));
+                moviesList.addAll(movieRepository.getFanFavoritesMovies(itemsOnPage * page, itemsOnPage));
                 break;
             case "recently-viewed": {
                 Pageable pageToFind = PageRequest.of(page, itemsOnPage, Sort.by("lastViewed").descending());
@@ -52,7 +52,7 @@ public class MoviesService {
                 break;
             }
             case "top-picks":
-                moviesList.addAll(movieRepository.getTopPicksMovies(page, itemsOnPage));
+                moviesList.addAll(movieRepository.getTopPicksMovies(itemsOnPage * page, itemsOnPage));
                 break;
             default: {
                 Pageable pageToFind = PageRequest.of(page, itemsOnPage);

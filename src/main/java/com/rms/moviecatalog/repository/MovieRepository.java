@@ -20,13 +20,13 @@ public interface MovieRepository extends PagingAndSortingRepository<Movie, UUID>
             value = "SELECT *, (SELECT IFNULL(AVG(rating),0) FROM movie_rate WHERE movie_rate.movie_id = movie.id) AS rate FROM movie ORDER BY rate DESC LIMIT ?1,?2",
             nativeQuery = true
     )
-    List<Movie> getFanFavoritesMovies(int page, int itemsOnPage);
+    List<Movie> getFanFavoritesMovies(int start, int itemsOnPage);
 
     @Query(
             value = "SELECT *, ((SELECT IFNULL(AVG(rating),0) FROM movie_rate WHERE movie_rate.movie_id = movie.id)+imdb_rating)/2 AS overall FROM movie ORDER BY overall DESC LIMIT ?1,?2",
             nativeQuery = true
     )
-    List<Movie> getTopPicksMovies(int page, int itemsOnPage);
+    List<Movie> getTopPicksMovies(int start, int itemsOnPage);
 
     @Modifying
     @Query(
