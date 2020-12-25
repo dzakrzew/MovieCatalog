@@ -5,10 +5,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquet viverra soda
 ### Movies
 * `[GET] /api/movies/list`
     * `params:`
-        * `page = Numer strony (liczone od zera)[default: 0]`
+        * `page = Numer strony (liczone od zera) [default: 0]`
         * `itemsOnPage = ilość elementów na stronie [default: 10] `
         * `details = filmy wraz z ocenami (UWAGA: inny typ) [default: false] `
-        * `order = Typ sortowania`
+        * `order = Typ sortowania [default: fan-favorites]`
             * `fan-favorites`
             * `editors-picks`
             * `top-picks`
