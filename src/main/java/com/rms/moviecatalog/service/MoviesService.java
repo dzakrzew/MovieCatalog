@@ -66,6 +66,14 @@ public class MoviesService {
         return moviesList;
     }
 
+    public List<Movie> getMoviesByQueryAndPage(String query, int page, int itemsOnPage) {
+        List<Movie> moviesList = new ArrayList<>();
+
+        moviesList.addAll(movieRepository.getMoviesByQuery(query, itemsOnPage * page, itemsOnPage));
+
+        return moviesList;
+    }
+
     public Optional<Movie> getMovieById(UUID id) {
         return this.movieRepository.findById(id);
     }

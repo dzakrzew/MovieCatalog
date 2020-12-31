@@ -45,6 +45,17 @@ public class MoviesController {
         return ResponseEntity.ok(moviesList);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity search(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int itemsOnPage, @RequestParam(defaultValue = "false") boolean details, @RequestParam(defaultValue = "query") String query) {
+        List<Movie> moviesList = this.moviesService.getMoviesByQueryAndPage(query, page, itemsOnPage);
+
+        if (details) {
+            return ResponseEntity.ok(this.movieRateService.getMovieListWithRating(moviesList));
+        }
+
+        return ResponseEntity.ok(moviesList);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<MovieDto> get(@PathVariable UUID id) {
         Optional<MovieDto> movieDto = moviesService.getMovieWithRatingById(id);

@@ -28,6 +28,12 @@ public interface MovieRepository extends PagingAndSortingRepository<Movie, UUID>
     )
     List<Movie> getTopPicksMovies(int start, int itemsOnPage);
 
+    @Query(
+            value = "SELECT * FROM movie WHERE movie.title LIKE %?1% LIMIT ?2,?3",
+            nativeQuery = true
+    )
+    List<Movie> getMoviesByQuery(String query, int start, int itemsOnPage);
+
     @Modifying
     @Query(
             value = "UPDATE movie SET last_viewed = NOW() WHERE id = ?1",
