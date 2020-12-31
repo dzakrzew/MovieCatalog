@@ -19,6 +19,13 @@ Aplikacja została napisana w języku Java przy użyciu frameworka Spring po str
             * `editors-picks` – wg oceny IMDB (od najwyższych),
             * `top-picks` – wg uśrednionych wartości ocen użytkowników i IMDB (od najwyższych),
             * `recently-viewed` – wg daty ostatniego wyświetlenia filmu (od najnowszych)
+* `[GET] /api/movies/search`
+    * opis: Szuka filmu z zadanym tytułem
+    * parametry:
+        * `page = Numer strony (liczone od zera) [default: 0]`
+        * `itemsOnPage = ilość elementów na stronie [default: 10] `
+        * `details = filmy wraz z ocenami (UWAGA: inny typ) [default: false] `
+        * `query = Wyszukiwany ciąg znaków`
 * `[GET] /api/movies/{id}`
     * opis: Pobiera dane filmu o podanym `id`
 * `[POST] /api/movies/create`
