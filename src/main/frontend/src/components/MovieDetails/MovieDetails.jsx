@@ -34,7 +34,7 @@ export const MovieDetails = ({ movie, rates, refetch, rating }) => {
                     filledIcon={<FaStar />}
                 />
                 <p className={'rating-description'}>
-                    {rating}/10 basing on {rates.length} reviews
+                    {rating}/5 basing on {rates.length} reviews
                 </p>
                 <MovieDetailsPlot>
                     <img src={movie.posterImageUrl} alt={movie.title} />
